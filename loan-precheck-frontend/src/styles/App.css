@@ -1,0 +1,135 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page background */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #A5D6A7, #2E7D32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card container */
+.card {
+  background: #f5f0e6;
+  padding: 2rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Title */
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #000000;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Input group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #2E7D32;
+}
+
+.form-group input {
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2E7D32;
+}
+
+/* Button */
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  background: #4CAF50;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #A5D6A7;
+  transform: translateY(-1px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Status card */
+.status-card {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+/* Status text */
+.status-label {
+  font-size: 0.8rem;
+  color: #A5D6A7;
+  margin-bottom: 0.3rem;
+}
+
+.status-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Status colors */
+.status-value.approved {
+  color: #4CAF50;
+}
+
+.status-value.denied {
+  color: #7a3e2b;
+}
+
+.status-value.pending {
+  color: #8a6f3a;
+}
+
+/* Error */
+.error {
+  color: #7a3e2b;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}

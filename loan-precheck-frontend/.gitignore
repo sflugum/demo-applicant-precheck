@@ -1,0 +1,70 @@
+############################
+# OS FILES
+############################
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+############################
+# FRONTEND (React / Node)
+############################
+node_modules/
+build/
+dist/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.env
+.env.*
+!.env.example
+
+############################
+# BACKEND (Spring Boot / Java)
+############################
+*.class
+target/
+build/
+*.log
+
+############################
+# IDE / EDITOR
+############################
+.vscode/
+.idea/
+*.iml
+
+.project
+.classpath
+.settings/
+
+############################
+# TEST / COVERAGE
+############################
+coverage/
+
+############################
+# TEMP / CACHE
+############################
+tmp/
+temp/
+.cache/
+*.tmp
+
+############################
+# KEYS / CERTS 
+############################
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+############################
+# MISC
+############################
+*.swp
+*.swo
+*~
