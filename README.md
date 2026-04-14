@@ -1,32 +1,62 @@
 # Loan Precheck App
 
 Full-stack web application built with **React (frontend)** and **Spring Boot (backend)**.  
-This app allows users to submit basic information and receive a loan prequalification check.
+This app allows users to submit basic financial information and receive a loan prequalification result.
+
+---
+
+## 🚀 Live Demo
+
+Frontend (deployed):  
+https://demo-applicant-precheck.vercel.app/
+
+> ⚠️ Note: The backend is hosted on a free-tier service and may take 30–60 seconds to respond on the first request due to cold start behavior. Subsequent requests are fast.
 
 ---
 
 ## Tech Stack
 
-**Frontend**
+### Frontend
 - React
 - JavaScript
 - HTML/CSS
 
-**Backend**
+### Backend
 - Java
 - Spring Boot
 
 ---
 
 ## Project Structure
-
 root/
-frontend/ # React app
-backend/ # Spring Boot app
+├── frontend/ # React app
+└── backend/ # Spring Boot API
 
 ---
 
-## Getting Started
+## How It Works
+
+- User enters **credit score** and **income**
+- React frontend sends a **POST request** to the backend API
+- Spring Boot processes the data and applies qualification logic
+- A result is returned and displayed
+
+### Possible Results
+- Approved  
+- Review  
+- No Result  
+---
+
+## Deployment
+
+- **Frontend:** Vercel  
+- **Backend API:** Render  
+
+The frontend communicates with the backend using an environment variable (`REACT_APP_API_URL`).
+
+---
+
+## Local Development Setup
 
 ### 1. Clone the repository
 
@@ -88,22 +118,34 @@ http://localhost:3000
 
 ### Frontend (`.env`)
 
+**Local development:**
+
 REACT_APP_API_URL=http://localhost:8080
+
+---
+
+**Production (Vercel):**
+- Set `REACT_APP_API_URL` to your deployed backend URL (Render)
 
 ---
 
 ## Future Improvements
 
-- Add database integration
-- Improve validation and error handling
-- Add authentication
+- Add database integration (persist applications)
+- Enhance validation and user feedback
+- Expand decision logic with more criteria
+- Add authentication/user accounts
 
 ---
 
 ## Notes
 
-- This project is intended as a portfolio piece demonstrating full-stack development
-- Backend must be running before frontend for API calls to work
+- This project is a **portfolio demonstration of full-stack development**
+- Includes:
+  - API integration  
+  - Environment configuration  
+  - Deployment across separate services  
+  - Basic error handling 
 
 ---
 

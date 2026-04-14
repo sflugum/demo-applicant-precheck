@@ -94,6 +94,13 @@
   cursor: not-allowed;
 }
 
+/* Note */
+.note {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #2E7D32;
+}
+
 /* Status card */
 .status-card {
   margin: 1.5rem 0;

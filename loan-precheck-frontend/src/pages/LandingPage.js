@@ -53,6 +53,8 @@ function LandingPage() {
             Submit Applicant
           </button>
 
+          <h5 className="note">Server may take a moment to wake up on first request.</h5>
+
         </form>
       </div>
     </div>
