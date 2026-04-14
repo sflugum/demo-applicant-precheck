@@ -28,9 +28,9 @@ https://demo-applicant-precheck.vercel.app/
 ---
 
 ## Project Structure
-root/
-├── frontend/ # React app
-└── backend/ # Spring Boot API
+
+frontend/ → React client  
+backend/ → Spring Boot REST API
 
 ---
 
