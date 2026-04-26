@@ -149,6 +149,12 @@ REACT_APP_API_URL=http://localhost:8080
 
 ---
 
-## Author
+## Updates
 
-Silas Flugum
+### Sprint 1: Improved Code Structure and Quality (04/24/26)
+- Code Organiztion: Moved the "Approved/Review" logic out of the Controller and into a separate Service class, making the code easier to read.
+- Initial Testing: Added my first JUnit tests to make sure logic behind credit and income checks work correctly every time I change code.
+- Accessibility: Updated the form with proper HTML5 labels and attributes (WCAG basics) so that app is usable for everyone, including those who use screen readers.
+- Agile Practice: Used GitHub Projects to break my work up into small, 1-hour tasks to help stay focused and follow a professional development workflow.
+
+
