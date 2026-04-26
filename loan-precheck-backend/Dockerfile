@@ -1,16 +1,8 @@
-FROM eclipse-temurin:17-jdk AS build
-WORKDIR /app
-
+FROM maven:3.8.4-openjdk-17-slim AS build
 COPY . .
+RUN mvn clean package -DskipTests
 
-RUN chmod +x gradlew
-RUN ./gradlew clean build --no-daemon
-
-FROM eclipse-temurin:17-jdk
-WORKDIR /app
-
-COPY --from=build /app/build/libs/*.jar app.jar
-
+FROM openjdk:17-jdk-slim
+COPY --from=build /target/*.jar app.jar
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
