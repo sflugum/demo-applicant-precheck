@@ -156,6 +156,13 @@ REACT_APP_API_URL=http://localhost:8080
 - Initial Testing: Added my first JUnit tests to make sure logic behind credit and income checks work correctly every time I change code.
 - Accessibility: Updated the form with proper HTML5 labels and attributes (WCAG basics) so that app is usable for everyone, including those who use screen readers.
 - Agile Practice: Used GitHub Projects to break my work up into small, 1-hour tasks to help stay focused and follow a professional development workflow.
+### Sprint 2: Infrastructure Migration & UI Modernization (04/26/26)
+- Build System:Converted the project from Gradle to Maven to resolve Java 21 compatibility issues and align with industry-standard build tools.
+- API Architecture: Refined the backend logic by removing redundant data objects and securing the API with a proper CORS configuration.
+- DevOps & Security: Containerized the application with Docker and implemented .env files to securely manage API paths and configuration.
+- UI Framework: Migrated the frontend to Bootstrap 5 to create a responsive, mobile-friendly interface that replaces the previous custom CSS.
+- Code Modernization: Refactored React components into modern functional components with arrow functions for cleaner and more consistent code.
+
 
 
 ### Credits
