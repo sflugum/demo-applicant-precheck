@@ -9,10 +9,11 @@ const ResultPage = () => {
 
   if (!data || !data.status) {
     return (
+      // Prevent loading if data is completely missing
       <div className="vh-100 bg-success bg-gradient d-flex align-items-center justify-content-center p-3">
-        <div className="container" style={{ maxwidth: '400px' }}>
+        <div className="container" style={{ maxWidth: '400px' }}>
           <div className="card shadow-lg border-0 rounded-4">
-            <div className="card=body p-4">
+            <div className="card-body p-4">
 
               <h2 className="text-center mb-4 fw-bold text-dark">
                 Application Result

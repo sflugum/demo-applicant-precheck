@@ -162,6 +162,14 @@ REACT_APP_API_URL=http://localhost:8080
 - DevOps & Security: Containerized the application with Docker and implemented .env files to securely manage API paths and configuration.
 - UI Framework: Migrated the frontend to Bootstrap 5 to create a responsive, mobile-friendly interface that replaces the previous custom CSS.
 - Code Modernization: Refactored React components into modern functional components with arrow functions for cleaner and more consistent code.
+### Sprint 3: Production Readiness & UI Polish (04/27/26)
+- User Interface Updates: Added a loading spinner to the frontend so users know the app is working while data is being fetched. This makes the app feel faster and prevents confusion during API calls.
+- CORS Configuration: Updated the backend security (CORS) to work correctly in both my local setup and the live production environment. This ensures the frontend and backend can talk to each other securely after deployment.
+- System Alignment: Fixed a bug where the frontend .env file and backend API paths weren't matching up. The connection is now seamless across the entire Docker-containerized stack.
+- Branding & README: Added a custom favicon to the browser tab to give the app a finished look. I also updated the README with proper credits for the assets I used to keep the project's documentation professional.
+- Final Testing: Performed end-to-end testing between the React components and the Maven backend. I've verified that all features work together as a complete system, making the app ready for portfolio review.
+- Developer Clarification: Added comments to clarify structure and function for future reference.
+
 
 
 

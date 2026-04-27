@@ -14,8 +14,9 @@ const LandingPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    setIsLoading(true);
+    setIsLoading(true); 
 
+    // Catches network or server errors during application submission
     submitPrecheck(Number(creditScore), Number(income))
       .then(data => {
         setIsLoading(false);

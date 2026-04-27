@@ -1,7 +1,7 @@
 const StatusCard=({ status }) => {
+  // Safe-guards, defaults to "REVIEW" to ensure status is valid string for UI in case of incomplete server response
   const normalizedStatus =
     typeof status === "string" ? status.toUpperCase() : "REVIEW";
-
 
     const isApproved = normalizedStatus === "APPROVED";
     const alertClass = isApproved ? "alert-success" : "alert-warning";
