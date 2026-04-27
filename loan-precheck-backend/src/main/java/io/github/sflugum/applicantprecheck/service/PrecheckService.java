@@ -6,17 +6,17 @@ import org.springframework.stereotype.Service;
 public class PrecheckService {
 	public String evaluateApplicant(int creditScore, int income) {
 
-		// validation first
+		// Inquiry validation
 		if (creditScore < 300 || creditScore > 850 || income < 0) {
 			return "REVIEW";
 		}
 
-		// business rules | Anti-fraud/High-income review check
+		// Anti-fraud/High-income review check
 		else if (creditScore > 750 && income > 3000000) {
 			return "REVIEW";
 		}
 
-		// business rules | standard approval
+		// Standard approval
 		else if (creditScore > 650 && income > 40000) {
 			return "APPROVED";
 		} else {

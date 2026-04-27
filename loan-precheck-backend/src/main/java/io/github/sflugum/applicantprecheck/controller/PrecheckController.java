@@ -9,16 +9,20 @@ import io.github.sflugum.applicantprecheck.model.Applicant;
 
 import io.github.sflugum.applicantprecheck.service.*;
 
+
+
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders="*")
+@RequestMapping("/api") 
 public class PrecheckController {
 
+	//call service layer to evaluate the applicant
 	@Autowired
-	private PrecheckService precheckService; //call service layer to evaluate the applicant
+	private PrecheckService precheckService; 
 
-	@PostMapping
+	@PostMapping("/precheck")
 	public ResponseEntity<PrecheckResponse> precheck(@RequestBody Applicant applicant) {
+		
 		String status = precheckService.evaluateApplicant(applicant.getCreditScore(), applicant.getIncome());
 
 		PrecheckResponse response = new PrecheckResponse();
