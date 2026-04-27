@@ -3,9 +3,10 @@
 Full-stack web application built with **React (frontend)** and **Spring Boot (backend)**.  
 This app allows users to submit basic financial information and receive a loan prequalification result.
 
-
 ## 🦘Jump to:
-#### [Updates and Progress Tracking](#updates-and-progress-tracking)
+
+[Progress Tracking](#progress-tracking)
+
 ---
 
 ## 🚀 Live Demo
@@ -152,7 +153,7 @@ REACT_APP_API_URL=http://localhost:8080
 
 ---
 
-## Updates and Progress Tracking
+## Progress Tracking
 
 ### Sprint 1: Improved Code Structure and Quality (04/24/26)
 - Code Organiztion: Moved the "Approved/Review" logic out of the Controller and into a separate Service class, making the code easier to read.
