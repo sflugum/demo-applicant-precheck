@@ -4,6 +4,7 @@ import { submitPrecheck } from "../services/api";
 import FormInput from "../components/FormInput";
 
 const LandingPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [creditScore, setCreditScore] = useState("");
   const [income, setIncome] = useState("");
   const [error, setError] = useState("");
@@ -13,9 +14,11 @@ const LandingPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     submitPrecheck(Number(creditScore), Number(income))
       .then(data => {
+        setIsLoading(false);
         if (!data || !data.status) {
           setError("Invalid response from server");
           return;
@@ -23,7 +26,10 @@ const LandingPage = () => {
 
         navigate("/result", { state: data });
       })
-      .catch(() => setError("Failed to submit"));
+      .catch(() => {
+        setIsLoading(false);
+        setError("Failed to submit");
+      });
   };
 
   return (
@@ -33,7 +39,7 @@ const LandingPage = () => {
           <div className="card=body p-4">
 
             <h2 className="text-center mb-4 fw-bold text-dark">
-              Applicant Precheck
+              Pre-Approval Inquiry
             </h2>
 
             {error && (
@@ -60,8 +66,18 @@ const LandingPage = () => {
                 placeholder="e.g. 60000"
               />
 
-              <button type="submit" className="btn btn-warning btn-lg fw-bold shadow-sm mt-2">
-                Submit 
+              <button type="submit"
+                className="btn btn-warning btn-lg fw-bold shadow-sm mt-2"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Processing
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </button>
 
               <div className="text-center mt-2">

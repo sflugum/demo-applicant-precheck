@@ -158,3 +158,9 @@ REACT_APP_API_URL=http://localhost:8080
 - Agile Practice: Used GitHub Projects to break my work up into small, 1-hour tasks to help stay focused and follow a professional development workflow.
 
 
+### Credits
+
+- Favicon provided by Favicon.io
+- Icons used are from Twemoji (Copyright 2020 Twitter, Inc and other contributors, licensed under CC-BY 4.0)
+
+

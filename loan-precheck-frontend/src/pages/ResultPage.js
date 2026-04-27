@@ -47,7 +47,7 @@ const ResultPage = () => {
 
             <StatusCard status={status} />
 
-            <button className="btn btn-warning btn-lg fw-bold shadow-sm mt-2" onClick={() => navigate("/")}>
+            <button className="btn btn-warning btn-lg w-100 fw-bold shadow-sm mt-2" onClick={() => navigate("/")}>
               Back to Form
             </button>
 
