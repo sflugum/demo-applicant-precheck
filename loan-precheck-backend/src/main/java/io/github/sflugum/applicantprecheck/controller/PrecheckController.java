@@ -1,6 +1,7 @@
 package io.github.sflugum.applicantprecheck.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +11,7 @@ import io.github.sflugum.applicantprecheck.model.Applicant;
 import io.github.sflugum.applicantprecheck.service.*;
 
 
-
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders="*")
 @RequestMapping("/api") 
 public class PrecheckController {
 
