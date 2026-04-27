@@ -1,12 +1,39 @@
-# Maven build output
+### Maven (The new build system) ###
 target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# Eclipse specific files
-.metadata/
+### Environment / Secrets (Critical for your .env work) ###
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### Docker ###
+.docker/
+
+### IDEs (Keep these to support different editors) ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.vscode/
 .settings/
 .classpath
 .project
 bin/
+.factorypath
+.sts4-cache/
 
-# Environment secrets
-.env
+### System Files ###
+.DS_Store
+Thumbs.db
