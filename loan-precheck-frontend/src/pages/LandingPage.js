@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { submitPrecheck } from "../services/api";
 import FormInput from "../components/FormInput";
 
-function LandingPage() {
+const LandingPage = () => {
   const [creditScore, setCreditScore] = useState("");
   const [income, setIncome] = useState("");
   const [error, setError] = useState("");
@@ -27,35 +27,52 @@ function LandingPage() {
   };
 
   return (
-    <div className="app-container">
-      <div className="card">
-        <h1 className="title">Applicant Precheck</h1>
+    <div className="vh-100 bg-success bg-gradient d-flex align-items-center justify-content-center p-3">
+      <div className="container" style={{ maxwidth: '400px' }}>
+        <div className="card shadow-lg border-0 rounded-4">
+          <div className="card=body p-4">
 
-        {error && <p className="error">{error}</p>}
+            <h2 className="text-center mb-4 fw-bold text-dark">
+              Applicant Precheck
+            </h2>
 
-        <form onSubmit={handleSubmit} className="form">
+            {error && (
+              <div className="alert alert-danger py-2 small text-center" role="alert">
+                {error}
+              </div>
+            )}
 
-          <FormInput
-            id="creditScore"
-            label="Credit Score"
-            value={creditScore}
-            onChange={(e) => setCreditScore(e.target.value)}
-          />
+            <form onSubmit={handleSubmit} className="d-grid gap-3">
 
-          <FormInput
-            id="income"
-            label="Income"
-            value={income}
-            onChange={(e) => setIncome(e.target.value)}
-          />
+              <FormInput
+                id="creditScore"
+                label="Credit Score"
+                value={creditScore}
+                onChange={(e) => setCreditScore(e.target.value)}
+                placeholder="e.g. 750"
+              />
 
-          <button type="submit" className="submit-btn">
-            Submit Applicant
-          </button>
+              <FormInput
+                id="income"
+                label="Annual Income"
+                value={income}
+                onChange={(e) => setIncome(e.target.value)}
+                placeholder="e.g. 60000"
+              />
 
-          <h5 className="note">Server may take a moment to wake up on first request.</h5>
+              <button type="submit" className="btn btn-warning btn-lg fw-bold shadow-sm mt-2">
+                Submit 
+              </button>
 
-        </form>
+              <div className="text-center mt-2">
+                <small className="text-muted italic">
+                  Note: Initial request may take a moment.
+                </small>
+              </div>
+
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 export const submitPrecheck = async (creditScore, income) => {
   const res = await fetch(
-    `${process.env.REACT_APP_API_URL}/precheck`,
+    `${process.env.REACT_APP_API_URL}/api/precheck`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

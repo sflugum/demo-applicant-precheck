@@ -1,4 +1,4 @@
-function FormInput({ id, label, value, onChange, placeholder }) {
+const FormInput=({ id, label, value, onChange, placeholder }) => {
   return (
     <div className="mb-3">
       <label htmlFor={id} className="form-label">{label}</label>

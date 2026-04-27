@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import StatusCard from "../components/StatusCard";
 
-function ResultPage() {
+const ResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -9,14 +9,25 @@ function ResultPage() {
 
   if (!data || !data.status) {
     return (
-      <div className="app-container">
-        <div className="card">
-          <h1 className="title">Application Result</h1>
-          <p className="error">No application data found</p>
+      <div className="vh-100 bg-success bg-gradient d-flex align-items-center justify-content-center p-3">
+        <div className="container" style={{ maxwidth: '400px' }}>
+          <div className="card shadow-lg border-0 rounded-4">
+            <div className="card=body p-4">
 
-          <button className="submit-btn" onClick={() => navigate("/")}>
-            Back to Form
-          </button>
+              <h2 className="text-center mb-4 fw-bold text-dark">
+                Application Result
+              </h2>
+
+              <p className="alert alert-danger" role="alert">
+                No application data found
+              </p>
+
+              <button className="btn btn-warning btn-lg fw-bold shadow-sm mt-2" onClick={() => navigate("/")}>
+                Back to Form
+              </button>
+
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -25,18 +36,23 @@ function ResultPage() {
   const status = data.status;
 
   return (
-    <div className="app-container">
-      <div className="card">
-        <h1 className="title">Application Result</h1>
+    <div className="vh-100 bg-success bg-gradient d-flex align-items-center justify-content-center p-3">
+      <div className="container" style={{ maxwidth: '400px' }}>
+        <div className="card shadow-lg border-0 rounded-4">
+          <div className="card=body p-4">
 
-        <StatusCard status={status} />
+            <h2 className="text-center mb-4 fw-bold text-dark">
+              Application Result
+            </h2>
 
-        <button
-          className="submit-btn"
-          onClick={() => navigate("/")}
-        >
-          Back to Form
-        </button>
+            <StatusCard status={status} />
+
+            <button className="btn btn-warning btn-lg fw-bold shadow-sm mt-2" onClick={() => navigate("/")}>
+              Back to Form
+            </button>
+
+          </div>
+        </div>
       </div>
     </div>
   );
