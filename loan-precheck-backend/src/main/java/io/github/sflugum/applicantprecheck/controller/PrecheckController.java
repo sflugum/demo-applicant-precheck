@@ -15,7 +15,7 @@ import io.github.sflugum.applicantprecheck.service.*;
 @RequestMapping("/api") 
 public class PrecheckController {
 
-	//call service layer to evaluate the applicant
+	// Send applicant data to PrecheckService and return the eligibility to the frontend
 	@Autowired
 	private PrecheckService precheckService; 
 

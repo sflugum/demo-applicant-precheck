@@ -2,8 +2,8 @@ package io.github.sflugum.applicantprecheck.dto;
 
 public class PrecheckResponse {
 
-    private String status;   // APPROVED, REVIEW, DENIED, ERROR
-    private String type;     // VALIDATION_ERROR, SERVER_ERROR (optional)
+    private String status;   // APPROVED, REVIEW, 
+    private String type;     // Error handling, validation vs server
     private String message;
 
     private Integer creditScore;
@@ -19,9 +19,7 @@ public class PrecheckResponse {
         this.income = income;
     }
 
-    // getters + setters
-
-    public String getStatus() {
+       public String getStatus() {
         return status;
     }
 
