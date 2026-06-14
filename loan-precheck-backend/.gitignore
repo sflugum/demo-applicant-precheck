@@ -1,4 +1,4 @@
-### Maven (The new build system) ###
+### Maven ###
 target/
 build/
 pom.xml.tag
@@ -11,7 +11,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-### Environment / Secrets (Critical for your .env work) ###
+### Environment / Secrets ###
 .env
 .env.local
 .env.development.local
@@ -21,7 +21,7 @@ buildNumber.properties
 ### Docker ###
 .docker/
 
-### IDEs (Keep these to support different editors) ###
+### IDEs ###
 .idea/
 *.iws
 *.iml
