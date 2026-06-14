@@ -1,9 +1,48 @@
 package io.github.sflugum.applicantprecheck.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Applicant {
-	
-	private int income;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private int creditScore;
+	private int income;
+	private String merchantId;
+	private String status;
+
+	public Applicant() {
+		// TODO default constructor
+	}
+
+	public Applicant (int creditScore, int income, String merchantId, String status) {
+		this.creditScore = creditScore;
+		this.income = income;
+		this.merchantId = merchantId;
+		this.status = status;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getCreditScore() {
+		return creditScore;
+	}
+
+	public void setCreditScore(int creditScore) {
+		this.creditScore = creditScore;
+	}
 
 	public int getIncome() {
 		return income;
@@ -13,11 +52,19 @@ public class Applicant {
 		this.income = income;
 	}
 
-	public int getCreditScore() {
-		return creditScore;
+	public String getMerchantId() {
+		return merchantId;
 	}
 
-	public void setCreditScore(int creditScore) {
-		this.creditScore = creditScore;
+	public void setMerchantId(String merchantId) {
+		this.merchantId = merchantId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
