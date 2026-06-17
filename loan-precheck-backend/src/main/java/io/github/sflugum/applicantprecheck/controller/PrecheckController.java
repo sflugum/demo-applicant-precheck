@@ -25,6 +25,7 @@ public class PrecheckController {
 		String decision = precheckService.evaluateApplicant(request.getCreditScore(), request.getIncome());
 
 		PrecheckResponse response = new PrecheckResponse();
+		response.setStatus(decision);
 
 		return ResponseEntity.ok(response);
 	}
