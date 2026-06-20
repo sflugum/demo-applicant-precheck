@@ -18,7 +18,6 @@ public class Applicant {
 	private String status;
 
 	public Applicant() {
-		// TODO default constructor
 	}
 
 	public Applicant (int creditScore, int income, String merchantId, String status) {

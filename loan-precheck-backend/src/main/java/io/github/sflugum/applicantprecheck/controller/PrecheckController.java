@@ -19,7 +19,7 @@ public class PrecheckController {
 		this.precheckService = precheckService;
 	}
 
-	@PostMapping("/precheck")
+	@PostMapping
 	public ResponseEntity<PrecheckResponse> evaluateApplicant(@Valid @RequestBody ApplicantRequest request) {
 
 		String decision = precheckService.evaluateApplicant(request.getCreditScore(), request.getIncome());
