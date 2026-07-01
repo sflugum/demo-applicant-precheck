@@ -1,6 +1,6 @@
 # Loan Precheck App
 
-![Docs Status](https://img.shields.io/badge/docs-updating-orange) ![Last Commit](https://img.shields.io/github/last-commit/sflugum/demo-applicant-precheck)   
+![Docs Status](https://img.shields.io/badge/docs-updating-orange) ![Last Commit](https://img.shields.io/github/last-commit/sflugum/demo-applicant-precheck/main)   
 
 Full-stack web application built with **React (frontend)** and **Spring Boot (backend)**.  
 This app allows users to submit basic financial information and receive a loan prequalification result.
