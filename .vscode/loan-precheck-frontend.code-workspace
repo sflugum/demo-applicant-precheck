@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "loan-precheck-frontend"
+		},
+		{
+			"path": "loan-precheck-backend"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Lab13"
+	}
+}
