@@ -1,64 +1,76 @@
-# Loan Precheck App
+# Applicant Precheck Engine
 
-![Docs Status](https://img.shields.io/badge/docs-updating-orange) ![Last Commit](https://img.shields.io/github/last-commit/sflugum/demo-applicant-precheck/main)   
+![Last Commit](https://img.shields.io/github/last-commit/sflugum/demo-applicant-precheck/main)   
 
-Full-stack web application built with **React (frontend)** and **Spring Boot (backend)**.  
-This app allows users to submit basic financial information and receive a loan prequalification result.
-
-## 🦘Jump to:
-
-[Progress Tracking](#progress-tracking)
+A full-stack web application that takes user-submitted financial data (income and credit score) and returns a simple loan prequalification result. Built as a portfolio project to practice full-stack integration, automated testing, and backend request-handling security.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 Frontend (deployed):  
 https://demo-applicant-precheck.vercel.app/
 
-> ⚠️ Note: The backend is hosted on a free-tier service and may take 30–60 seconds to respond on the first request due to cold start behavior. Subsequent requests are fast.
+> ⚠️ Note: The backend runs on a free-tier host and may take 30–60 seconds to respond on the first request (cold start). Requests after that are fast.
 
 ---
 
 ## Tech Stack
 
-### Frontend
-- React
-- JavaScript
-- HTML/CSS
+![React](https://img.shields.io/badge/Frontend-React-blue?logo=react&logoColor=white)![Spring Boot](https://img.shields.io/badge/Backend-Spring_Boot-brightgreen?logo=springboot&logoColor=white)![Java](https://img.shields.io/badge/Language-Java-orange?logo=java&logoColor=white)
+![H2 Database](https://img.shields.io/badge/Database-H2-lightgrey?logo=sqlite&logoColor=white)
+![Deployed](https://img.shields.io/badge/Deployed-Vercel_%7C_Render-black?logo=vercel)
 
-### Backend
-- Java
-- Spring Boot
+**Frontend**
+* React
+* JavaScript/HTML5
+* Bootstrap 5
+
+**Backend**
+* Java 21
+* Spring Boot
+* Maven
+* H2 (in-memory database)
+
+**Testing & Deployment**
+* JUnit
+* Bruno (API testing)
+* Vercel (frontend) / Render (backend)
 
 ---
 
-## Project Structure
+## Key Features
 
-frontend/ → React client  
-backend/ → Spring Boot REST API
+* **Decisioning logic:** Evaluates submitted income and credit score against a set of backend qualification rules and returns an Approved or Review status.
+* **API rate limiting:** A backend filter using Bucket4j and a ConcurrentHashMap caps requests per IP, returning 429 Too Many Requests once a threshold is exceeded (e.g., an 11th rapid submission). Built to explore basic abuse-prevention patterns, not as a production-grade DoS defense.
+* **Data Persistence:** Uses an H2 in-memory database to store application records for the lifetime of the running container. Data is not persisted across restarts, this was a deliberate scope choice for a demo project, not a production data layer.
+* **Automated tests:** JUnit test suite covering the decisioning logic and rate-limiter behavior, run automatically on every build.
+* **CORS & environment config:** Frontend and backend communicate via CORS configuration and environment variables, set up separately for local and deployed environments.
 
 ---
 
-## How It Works
+## API Security Walkthrough
 
-- User enters **credit score** and **income**
-- React frontend sends a **POST request** to the backend API
-- Spring Boot processes the data and applies qualification logic
-- A result is returned and displayed
+### Normal traffic
+![precheck-initial200.png](images/precheck-initial200.png)
 
-### Possible Results
-- Approved  
-- Review  
-- No Result  
+### Rate limiter triggered on the 11th rapid request
+![precheck-429status.png](images/precheck-429status.png)
+
+### Request from a different IP allowed through
+![precheck-newIP200.png](images/precheck-newIP200.png)
+
 ---
 
-## Deployment
+## How the Rate Limiter Works
 
-- **Frontend:** Vercel  
-- **Backend API:** Render  
+This project includes a custom rate-limiting filter, built partly to learn how request IP handling works at a lower level before reaching for a library.
 
-The frontend communicates with the backend using an environment variable (`REACT_APP_API_URL`).
+* **Proxy Chain Extraction (`X-Forwarded-For`):** The filter reads the `X-Forwarded-For` header and takes the first IP in the chain, so it doesn't accidentally rate-limit multiple users sharing one network/proxy.
+* **IPv4-mapped IPv6 handling:** I read about a known rate-limiter bypass where a client exhausts its limit on an IPv4 address, then retries using the IPv4-mapped IPv6 form of the same address. The filter lowercases incoming IPs and strips the standard `::ffff:` prefix to catch this specific case.
+* **Known limitation:** This normalization only handles the compressed `::ffff:` form and doesn't cover other IPv6 representations (e.g., uncompressed variants). I intentionally kept the scope narrow rather than writing a fuller parser. In a production setting, this logic should be replaced with a well-tested networking library rather than custom string handling.
+* **Thread safety:** Each IP gets its own token bucket via Bucket4j, backed by a `ConcurrentHashMap`, so concurrent requests are handled safely.
+* **Test coverage:** JUnit tests simulate proxied requests and the `::ffff:` bypass attempt to confirm the filter behaves as expected.
 
 ---
 
@@ -66,122 +78,41 @@ The frontend communicates with the backend using an environment variable (`REACT
 
 ### 1. Clone the repository
 
+```bash
 git clone https://github.com/sflugum/demo-applicant-precheck.git
-
 cd demo-applicant-precheck
+```
 
----
+### 2. Backend Setup (Spring Boot)
+Runs on port 8080. Requires Java 21.
 
-## Backend Setup (Spring Boot)
-
-### Run the backend
-
-From the `backend` folder:
-
+```bash
+cd loan-precheck-backend
 ./mvnw spring-boot:run
+```
 
-Or run directly from your IDE (Eclipse recommended for Java).
+### 3. Frontend Setup (React)
+Runs on port 3000. In a new terminal:
 
-Backend runs on:
-
-http://localhost:8080
-
----
-
-## Frontend Setup (React)
-
-### Install dependencies
-
-From the `frontend` folder:
-
+```bash
+cd loan-precheck-frontend
 npm install
+```
 
-### Create environment file
+Create a `.env` file in the frontend root directory:
 
-Create a `.env` file in the `frontend` folder:
-
+```bash
 REACT_APP_API_URL=http://localhost:8080
+```
 
-### Start frontend
+Start the app:
 
+```bash
 npm start
-
-Frontend runs on:
-
-http://localhost:3000
-
+```
 ---
 
-## How It Works
-
-- React frontend sends requests to Spring Boot backend
-- Backend processes input and returns loan precheck result
-- Frontend displays the result to the user
-
----
-
-## Environment Variables
-
-### Frontend (`.env`)
-
-**Local development:**
-
-REACT_APP_API_URL=http://localhost:8080
-
----
-
-**Production (Vercel):**
-- Set `REACT_APP_API_URL` to your deployed backend URL (Render)
-
----
-
-## Future Improvements
-
-- Add database integration (persist applications)
-- Enhance validation and user feedback
-- Expand decision logic with more criteria
-- Add authentication/user accounts
-
----
-
-## Notes
-
-- This project is a **portfolio demonstration of full-stack development**
-- Includes:
-  - API integration  
-  - Environment configuration  
-  - Deployment across separate services  
-  - Basic error handling 
-
----
-
-## Progress Tracking
-
-### Sprint 1: Improved Code Structure and Quality (04/24/26)
-- Code Organiztion: Moved the "Approved/Review" logic out of the Controller and into a separate Service class, making the code easier to read.
-- Initial Testing: Added my first JUnit tests to make sure logic behind credit and income checks work correctly every time I change code.
-- Accessibility: Updated the form with proper HTML5 labels and attributes (WCAG basics) so that app is usable for everyone, including those who use screen readers.
-- Agile Practice: Used GitHub Projects to break my work up into small, 1-hour tasks to help stay focused and follow a professional development workflow.
-### Sprint 2: Infrastructure Migration & UI Modernization (04/26/26)
-- Build System:Converted the project from Gradle to Maven to resolve Java 21 compatibility issues and align with industry-standard build tools.
-- API Architecture: Refined the backend logic by removing redundant data objects and securing the API with a proper CORS configuration.
-- DevOps & Security: Containerized the application with Docker and implemented .env files to securely manage API paths and configuration.
-- UI Framework: Migrated the frontend to Bootstrap 5 to create a responsive, mobile-friendly interface that replaces the previous custom CSS.
-- Code Modernization: Refactored React components into modern functional components with arrow functions for cleaner and more consistent code.
-### Sprint 3: Production Readiness & UI Polish (04/27/26)
-- User Interface Updates: Added a loading spinner to the frontend so users know the app is working while data is being fetched. This makes the app feel faster and prevents confusion during API calls.
-- CORS Configuration: Updated the backend security (CORS) to work correctly in both my local setup and the live production environment. This ensures the frontend and backend can talk to each other securely after deployment.
-- System Alignment: Fixed a bug where the frontend .env file and backend API paths weren't matching up. The connection is now seamless across the entire Docker-containerized stack.
-- Branding & README: Added a custom favicon to the browser tab to give the app a finished look. I also updated the README with proper credits for the assets I used to keep the project's documentation professional.
-- Final Testing: Performed end-to-end testing between the React components and the Maven backend. I've verified that all features work together as a complete system, making the app ready for portfolio review.
-- Developer Clarification: Added comments to clarify structure and function for future reference.
-
-
-
-
-### Credits
+### 📖 Credits
 
 - Favicon provided by Favicon.io
 - Icons used are from Twemoji (Copyright 2020 Twitter, Inc and other contributors, licensed under CC-BY 4.0)
-
-
