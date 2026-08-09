@@ -13,11 +13,10 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/*
+/**
 * Unit tests for the RateLimitingFilter.
 * Ensures that HTTP requests are properly allowed or blocked based on IP address limits.
-* */
-
+*/
 public class RateLimitingFilterTest {
 
     private RateLimitingFilter filter;
@@ -25,8 +24,8 @@ public class RateLimitingFilterTest {
     @BeforeEach
     void setUp() {
         // Arrange: Instantiate dependencies manually to keep tests fast and isolated
-        RateLimitingService service = new RateLimitingService();
-        filter = new RateLimitingFilter(service);
+        RateLimitingService rateLimitingService = new RateLimitingService();
+        filter = new RateLimitingFilter(rateLimitingService);
     }
 
     @Test
@@ -58,7 +57,6 @@ public class RateLimitingFilterTest {
             assertEquals(HttpStatus.OK.value(), response.getStatus(), "First 10 requests should pass.");
         }
 
-        // Set up breaking point, 11th request
         MockHttpServletRequest blockedRequest = new MockHttpServletRequest();
         blockedRequest.setRemoteAddr(ip);
         MockHttpServletResponse blockedResponse = new MockHttpServletResponse();
@@ -93,7 +91,7 @@ public class RateLimitingFilterTest {
             }
         }
 
-        // Arrange: Innocent user makes request at same time through same proxy
+        // Arrange: Innocent user makes request through same proxy
         MockHttpServletRequest innocentRequest = new MockHttpServletRequest();
         innocentRequest.setRemoteAddr(renderProxyIp);
         innocentRequest.addHeader("X-Forwarded-For", innocentUserIp);
@@ -128,13 +126,13 @@ public class RateLimitingFilterTest {
         MockHttpServletRequest bypassRequest = new MockHttpServletRequest();
         bypassRequest.setRemoteAddr(renderProxyIp);
         bypassRequest.addHeader("X-Forwarded-For", attackerMappedIpv6);
-        MockHttpServletResponse byoassResponse = new MockHttpServletResponse();
+        MockHttpServletResponse bypassResponse = new MockHttpServletResponse();
 
-        // Act
-        filter.doFilter(bypassRequest, byoassResponse, new MockFilterChain());
+        // Act: Process attacker's bypass attempt
+        filter.doFilter(bypassRequest, bypassResponse, new MockFilterChain());
 
         // Assert: The system should normalize the IP and block the request anyway
-        assertEquals(HttpStatus.TOO_MANY_REQUESTS.value(), byoassResponse.getStatus(),
+        assertEquals(HttpStatus.TOO_MANY_REQUESTS.value(), bypassResponse.getStatus(),
                 "Attacker should be blocked even when attempting to bypass using an IPv4-mapped IPv6 address");
     }
 }

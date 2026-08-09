@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/*
-Unit tests for the RateLimingService.
-Validates the core token-bucket logic used to track and limit IP addresses.
+/**
+ * Unit tests for the RateLimitingService.
+ * Validates the core token-bucket logic used to track and limit IP addresses.
  */
-
 public class RateLimitingServiceTest {
 
     private RateLimitingService rateLimitingService;
@@ -39,7 +38,7 @@ public class RateLimitingServiceTest {
 
     @Test
     @DisplayName("Should track rate limits independently for different IP addresses")
-    void shouldIsolateBucketsByIpAddress_DualStack() {
+    void shouldIsolateBucketsByIpAddress() {
         // Arrange: Create buckets for two entirely different IP addresses
         String ip1 = "198.51.100.1";
         String ip2 = "203.0.113.1";

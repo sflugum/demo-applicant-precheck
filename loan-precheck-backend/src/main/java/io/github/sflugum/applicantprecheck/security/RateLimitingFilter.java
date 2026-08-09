@@ -12,9 +12,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-/*
-Intercepts incoming HTTP requests to enforce rate limits per user IP address.
-Extends OncePerRequestFilter to guarantee it only fires once per dispatch lifecycle.
+/**
+ * Intercepts incoming HTTP requests to enforce rate limits per user IP address.
+ * Extends OncePerRequestFilter so it only fires once per dispatch lifecycle.
  */
 @Component
 public class RateLimitingFilter extends OncePerRequestFilter {
@@ -47,9 +47,9 @@ public class RateLimitingFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    /*
-    Resolves the true IP address of the client, handling reverse proxies and
-    formatting inconsistencies to prevent rate limit bypasses.
+    /**
+     * Resolves the true IP address of the client, handling reverse proxies and
+     *      formatting inconsistencies to prevent rate limit bypasses.
      */
     private String getClientIp(HttpServletRequest request) {
         // The application runs behind a reverse proxy (Render), so the true client IP
@@ -67,10 +67,10 @@ public class RateLimitingFilter extends OncePerRequestFilter {
         return normalizeIp(ipAddress);
     }
 
-    /*
-    Normalize IP addresses to a standard format.
-    Specifically protects against an exploit where an attacker exhausts their IPv4
-    rate limit, then bypasses it by sending the IPv4-mapped IPv6 equivalent.
+    /**
+     * Normalize IP addresses to a standard format.
+     *     Specifically protects against an exploit where an attacker exhausts their IPv4
+     *     rate limit, then bypasses it by sending the IPv4-mapped IPv6 equivalent.
      */
     private String normalizeIp(String ip) {
         if (ip == null) {
@@ -79,6 +79,7 @@ public class RateLimitingFilter extends OncePerRequestFilter {
 
         // IPv6 is not case-sensitive, normalize to lowercase first.
         String lowerIp = ip.toLowerCase();
+
         if (lowerIp.startsWith("::ffff:")) {
             // Strip the IPv6 mapping prefix (length of 7) to return the standard IPv4
             return lowerIp.substring(7);
@@ -88,6 +89,6 @@ public class RateLimitingFilter extends OncePerRequestFilter {
         // rate limit bypasses. Note: Uncompressed variations (e.g., 0:0:0:0:0:ffff:)
         // are not covered here to avoid brittle custom parsing logic. A production
         // environment should replace this with an established IP parsing library.
-        return ip;
+        return lowerIp;
     }
 }
