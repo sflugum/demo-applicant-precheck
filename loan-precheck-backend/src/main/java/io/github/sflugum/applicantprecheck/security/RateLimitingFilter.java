@@ -27,8 +27,7 @@ public class RateLimitingFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
 
-        // Pull the true IP address from the proxy header.
-        // Render uses reverse proxy
+        // Pull the true IP address from the proxy header, Render uses reverse proxy
         String ipAddress = request.getHeader("X-Forwarded-For");
         if (ipAddress == null || ipAddress.isEmpty()) {
             ipAddress = request.getRemoteAddr();
