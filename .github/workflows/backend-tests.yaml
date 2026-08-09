@@ -2,7 +2,7 @@ name: Java Backend Tests
 
 on:
   push:
-  pull_requests:
+  pull_request:
     branches: ["main"]
 
 jobs:
