@@ -1,3 +1,7 @@
+/**
+ * Displays the outcome of a precheck request. Falls back to "REVIEW" if status
+ * is missing or not a string, so the UI never renders something like "undefined".
+ */
 const StatusCard=({ status }) => {
   // Safe-guards, defaults to "REVIEW" to ensure status is valid string for UI in case of incomplete server response
   const normalizedStatus =

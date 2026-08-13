@@ -4,6 +4,11 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * Incoming payload for a precheck request. Validation annotations enforce
+ * the credit score range and non-negative income before the request reaches
+ * the service layer.
+ */
 public class ApplicantRequest {
 
     @NotNull(message = "Credit score is required")

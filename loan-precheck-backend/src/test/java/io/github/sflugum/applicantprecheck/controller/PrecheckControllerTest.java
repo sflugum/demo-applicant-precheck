@@ -12,10 +12,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/*
-Unit tests for the PrecheckController.
-Verifies that the API endpoints correctly receive HTTP requests, process payloads,
-and return the expected JSON responses to the frontend.
+/**
+ * Unit tests for the PrecheckController.
+ * Verifies that the API endpoint correctly receives HTTP requests, processes payloads,
+ * and returns the expected JSON response. Currently only covers the approval path.
+ * No test yet for a REVIEW result or an invalid payload.
  */
 @SpringBootTest
 @AutoConfigureMockMvc

@@ -4,6 +4,9 @@ import ResultPage from "./pages/ResultPage";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./styles/App.css";
 
+/**
+ * Root component. Two routes: the intake form and the result page.
+ */
 function App() {
   return (
     <Router>
