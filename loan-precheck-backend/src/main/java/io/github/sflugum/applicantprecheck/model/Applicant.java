@@ -5,6 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * JPA entity representing a single applicant evaluation record, persisted
+ * to the H2 in-memory database. Records don't survive a server restart.
+ */
 @Entity
 public class Applicant {
 

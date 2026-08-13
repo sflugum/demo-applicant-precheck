@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-/*
-Unit tests for the PrecheckService.
-Validates the core business logic for evaluating applicant qualifications
-and ensures data is properly passed to the persistence layer.
+/**
+ * Unit tests for the PrecheckService.
+ * Validates the core business logic for evaluating applicant qualifications
+ * and confirms the result is passed to the repository regardless of outcome.
  */
 @ExtendWith(MockitoExtension.class)
 public class PrecheckServiceTest {

@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { submitPrecheck } from "../services/api";
 import FormInput from "../components/FormInput";
 
+/**
+ * Landing page with the applicant intake form. Submits credit score and
+ * income to the backend, then navigates to the result page with the response.
+ */
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [creditScore, setCreditScore] = useState("");
@@ -25,6 +29,8 @@ const LandingPage = () => {
           return;
         }
 
+        // Passed via router state instead of a URL param since this data
+        // doesn't need to persist across a refresh or be shareable as a link.
         navigate("/result", { state: data });
       })
       .catch(() => {
@@ -35,9 +41,9 @@ const LandingPage = () => {
 
   return (
     <div className="vh-100 bg-success bg-gradient d-flex align-items-center justify-content-center p-3">
-      <div className="container" style={{ maxwidth: '400px' }}>
+      <div className="container" style={{ maxWidth: '400px' }}>
         <div className="card shadow-lg border-0 rounded-4">
-          <div className="card=body p-4">
+          <div className="card-body p-4">
 
             <h2 className="text-center mb-4 fw-bold text-dark">
               Pre-Approval Inquiry

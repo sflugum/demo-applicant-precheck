@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Catches validation failures from @Valid request bodies and converts them
+ * into a field-to-message map, instead of letting Spring's default error
+ * response format reach the frontend.
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -21,6 +26,8 @@ public class GlobalExceptionHandler {
         log.warn("Validation failed for incoming request");
 
         Map<String, String> errors = new HashMap<>();
+        // Collect every failed field into one map so the frontend can show
+        // all validation errors at once instead of one at a time.
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage())
         );

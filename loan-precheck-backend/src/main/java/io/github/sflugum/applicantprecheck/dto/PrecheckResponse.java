@@ -1,5 +1,10 @@
 package io.github.sflugum.applicantprecheck.dto;
 
+/**
+ * Response payload sent back to the frontend after a precheck request.
+ * The type and message fields exist for future error/detail reporting.
+ * PrecheckController currently only ever sets status.
+ */
 public class PrecheckResponse {
 
     private String status;   // APPROVED, REVIEW, 
@@ -19,7 +24,7 @@ public class PrecheckResponse {
         this.income = income;
     }
 
-       public String getStatus() {
+    public String getStatus() {
         return status;
     }
 

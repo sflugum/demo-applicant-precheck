@@ -8,9 +8,14 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Exposes the precheck endpoint the frontend submits applicant data to.
+ * Request validation happens automatically via @Valid, with failures
+ * handled by GlobalExceptionHandler rather than here.
+ * CORS is handled globally by CorsConfig.
+ */
 @RestController
 @RequestMapping("/api/precheck")
-@CrossOrigin(origins = "http://localhost:3000")
 public class PrecheckController {
 
 	private final PrecheckService precheckService;
