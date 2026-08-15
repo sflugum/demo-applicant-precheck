@@ -33,9 +33,21 @@ const LandingPage = () => {
         // doesn't need to persist across a refresh or be shareable as a link.
         navigate("/result", { state: data });
       })
-      .catch(() => {
+      .catch((err) => {
         setIsLoading(false);
-        setError("Failed to submit");
+
+        // 1. Handles Spring Boot JSON validation map (e.g. {"creditScore": "Credit score must..."})
+        if (err && typeof err === 'object') {
+          setError(Object.values(err).join(" | "));
+        }
+        // 2. Handles Rate Limiting plain text string
+        else if (err && typeof err === 'string') {
+          setError(err);
+        }
+        // 3. Fallback for complete network failure
+        else {
+          setError("Failed to submit");
+        }
       });
   };
 
