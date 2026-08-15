@@ -15,6 +15,16 @@ export const submitPrecheck = async (creditScore, income) => {
     }
   );
 
-  const data = await res.json().catch(() => null);
-  return data;
+  // Explicitly handles 400 (Validation)and 429 (Rate Limiter) status codes.
+  if (!res.ok) {
+      // Determines if the backend sent a JSON validation map or a plain text rate-limit warning.
+      const isJson = res.headers.get("content-type")?.includes("application/json");
+      const errorData = isJson ? await res.json() : await res.text();
+
+      // Throws he parsed payload to the frontend component's catch block.
+      throw errorData;
+  }
+
+  // Successful 200 OK response processing.
+    return await res.json().catch(() => null);
 };
